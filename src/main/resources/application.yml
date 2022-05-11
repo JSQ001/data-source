@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ecms-sever
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 512MB
+      max-request-size: 512MB
+
+server:
+  tomcat:
+    max-swallow-size: 512MB

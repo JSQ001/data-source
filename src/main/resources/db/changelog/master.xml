@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+  <changeSet id="T100-20220525-001" author="jsq" >
+    <createTable tableName="user_info" remarks="用户信息表">
+      <column name="id" type="bigint(20)" remarks="用户id">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_info_id"/>
+      </column>
+      <column name="sso_id" type="bigint(20)" remarks="认证中心用户id"/>
+      <column name="username" type="varchar(30)" remarks="用户名"/>
+      <column name="real_name" type="varchar(30)" remarks="用户真实姓名"/>
+      <column name="phone" type="varchar(20)" remarks="phone"/>
+
+      <column name="created_time" type="datetime" defaultValue="now()" remarks="创建时间">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_time" type="datetime" defaultValue="now()" remarks="更新时间">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by" type="bigint(20)" remarks="创建人">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_by" type="bigint(20)" remarks="更新人">
+        <constraints nullable="false"/>
+      </column>
+      <column name="is_deleted" type="boolean"  remarks="逻辑删除">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <createTable tableName="data_type" remarks="数据分类表">
+      <column name="id" type="bigint(20)" remarks="数据分类表id">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_data_type_id"/>
+      </column>
+      <column name="code" type="varchar(20)" remarks="数据分类编码">
+        <constraints unique="true" nullable="false"/>
+      </column>
+      <column name="name" type="varchar(255)" remarks="数据分类名称"/>
+      <column name="url" type="varchar(255)" remarks="分类链接url"/>
+      <column name="parent_id" type="bigint(20)" remarks="上级id"/>
+      <column name="logical_code" type="varchar(255)" remarks="树形结构层级关系"/>
+
+      <column name="created_time" type="datetime" defaultValue="now()" remarks="创建时间">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_time" type="datetime" defaultValue="now()" remarks="更新时间">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by" type="bigint(20)" remarks="创建人">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_by" type="bigint(20)" remarks="更新人">
+        <constraints nullable="false"/>
+      </column>
+      <column name="is_deleted" type="boolean"  remarks="逻辑删除">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <createTable tableName="user_data_type_r" remarks="用户数据分类关联表">
+      <column name="user_id" type="bigint(20)" remarks="用户id"/>
+      <column name="data_type_id" type="bigint(20)" remarks="数据分类id"/>
+    </createTable>
+
+    <addUniqueConstraint tableName="user_data_type_r" columnNames="user_id,data_type_id" constraintName="unique.user_data_type_r.user_id-data_type_id"/>
+
+  </changeSet>
+<!--  <changeSet id="T100-20211018-002" author="jsq">-->
+<!--    <sqlFile path="classpath:/db/sql/init.sql" encoding="UTF-8" />-->
+<!--&lt;!&ndash;    <sqlFile path="classpath:/db/sql/wj.sql" encoding="UTF-8" />&ndash;&gt;-->
+<!--  </changeSet>-->
+
+</databaseChangeLog>
