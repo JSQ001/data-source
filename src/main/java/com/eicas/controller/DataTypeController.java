@@ -29,7 +29,7 @@ public class DataTypeController {
 
     @Operation(summary = "创建数据类型",description = "")
     @PostMapping(value = "/create")
-    public boolean createDataType(@RequestBody DataType param) {
+    public ResultData<Boolean> createDataType(@RequestBody DataType param) {
         return dataTypeService.create(param);
     }
 
@@ -60,6 +60,12 @@ public class DataTypeController {
     @GetMapping(value = "/list/tree/{userId}")
     public ResultData<List<DataType>> listTree(@PathVariable Long userId) {
         return dataTypeService.listTree(userId);
+    }
+
+    @Operation(summary = "删除数据类型")
+    @PostMapping(value = "/delete/{id}")
+    public ResultData<Boolean> delete(@PathVariable Long id) {
+        return dataTypeService.removeById(id);
     }
 
 }

@@ -49,6 +49,9 @@ public class DataType implements Serializable {
      */
     @TableField(value = "url")
     private String url;
+
+    @TableField(value = "sort_order")
+    private Integer sortOrder;
     /**
      * 创建时间
      */

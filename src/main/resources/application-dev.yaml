@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 8050
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/data-source?createDatabaseIfNotExist=true&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
@@ -33,9 +33,4 @@ ecms:
   token-url: http://localhost:9100/ana/oauth/token.do
   signoff-uri: http://localhost/oauth/signoff.do
   client-id: data-source
-  client-secret: data-source
-  store-root-path: /Users/jsq/Desktop/test
-  mapping-root-path: /file
-  phantomJS: /usr/local/bin/phantomjs
-  upload: /Users/jsq/Desktop/test
-  filePrefix: http://localhost:8000/file
+  client-secret: 123456

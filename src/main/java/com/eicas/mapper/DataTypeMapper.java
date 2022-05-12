@@ -43,7 +43,7 @@ public interface DataTypeMapper extends BaseMapper<DataType> {
      * */
     @Select("" +
             "<script>" +
-            "select id, code, name, url, parent_id as parentId,logical_code as logicalCode  \n" +
+            "select id, code, name, url, sort_order as sortOrder, parent_id as parentId,logical_code as logicalCode  \n" +
             "from data_type\n" +
             "<where>" +
             "   is_deleted = 0 and parent_id = 0 or parent_id is null or parent_id = ''" +
@@ -62,7 +62,7 @@ public interface DataTypeMapper extends BaseMapper<DataType> {
                     select = "com.eicas.mapper.DataTypeMapper.getChildrenByParentId", fetchType = FetchType.EAGER
             ))
     })
-    Page<DataType> getTreeByLogicalCodes(Set<String> logicalCodes, Page<DataType> page);
+    List<DataType> listDataTypeByCodes(Set<String> logicalCodes);
 
 
     /**
@@ -70,7 +70,7 @@ public interface DataTypeMapper extends BaseMapper<DataType> {
      * */
     @Select("" +
             "<script>" +
-            "select id, code, name, url, parent_id as parentId,logical_code as logicalCode \n" +
+            "select id, code, name, url, sort_order as sortOrder, parent_id as parentId,logical_code as logicalCode \n" +
             "from data_type\n" +
             "<where>" +
             "   is_deleted = 0 and parent_id is null or parent_id = '' or parent_id = 0" +
@@ -90,7 +90,7 @@ public interface DataTypeMapper extends BaseMapper<DataType> {
      * */
     @Select("" +
             "<script>" +
-            "select id, code, name, url, parent_id as parentId,logical_code as logicalCode \n" +
+            "select id, code, name, url, sort_order as sortOrder, parent_id as parentId,logical_code as logicalCode \n" +
             "from data_type\n" +
             "<where>" +
             "   is_deleted = 0 and parent_id is null or parent_id = '' or parent_id = 0" +
@@ -108,7 +108,7 @@ public interface DataTypeMapper extends BaseMapper<DataType> {
 
     @Select("" +
             "<script>" +
-            "select id, code, name, url, parent_id as parentId,logical_code as logicalCode \n" +
+            "select id, code, name, url, sort_order as sortOrder, parent_id as parentId,logical_code as logicalCode \n" +
             "from data_type\n" +
             "<where>" +
             "   is_deleted = 0" +
@@ -134,7 +134,7 @@ public interface DataTypeMapper extends BaseMapper<DataType> {
 
     @Select("" +
             "<script>" +
-            "select id, code, name, url, logical_code, parent_id\n" +
+            "select id, code, name, url, sort_order as sortOrder, logical_code, parent_id\n" +
             "from data_type as t, user_data_type_r as r\n" +
             "where t.is_deleted = 0 \n" +
             "and r.user_id = #{userId} " +
@@ -152,7 +152,7 @@ public interface DataTypeMapper extends BaseMapper<DataType> {
 
     @Select("" +
             "<script>" +
-            "select id, code, name, url, logical_code, parent_id\n" +
+            "select id, code, name, url, sort_order as sortOrder, logical_code, parent_id\n" +
             "from data_type as t, user_data_type_r as r\n" +
             "<where>" +
             "   t.is_deleted = 0 \n" +

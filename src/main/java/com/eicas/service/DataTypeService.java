@@ -13,10 +13,11 @@ import java.util.List;
 * @createDate 2022-05-09 22:54:48
 */
 public interface DataTypeService extends IService<DataType> {
-    boolean create(DataType dataType);
+    ResultData<Boolean> create(DataType dataType);
 
     ResultData<Page<DataType>> listDataTypeTreeByParam(Long userId, String keyword, Page<DataType> page);
 
     ResultData<List<DataType>> listTree(Long userId);
     ResultData<Boolean> mallocUser(Long dataTypeId, List<Long> userIds);
+    ResultData<Boolean> removeById(Long id);
 }
